@@ -108,20 +108,6 @@ df_arbl_p_kjonn <- data.frame(
     alp_k = arbl_p_kjonn[[1]]$value
 )
 
-arbl <- ApiData(
-    10594,
-    Region = kom_vec,
-    Tid = tid_vec,
-    Kjonn = kjonn_vec)
-
-df_arbl <- data.frame(
-    knr = arbl[[2]]$Region,
-    knavn = arbl[[1]]$region,
-    tid = arbl[[2]]$Tid,
-    kjonn = arbl[[1]]$kjønn,
-    # arbeidsløse i prosent
-    al = arbl[[1]]$value
-)
 ```
 
 ```{r}
@@ -136,9 +122,20 @@ Antall rekker vil være `418*185*2=154660`.
 Igjen er det `Kjonn` og ikke `Alder` som er statistikk-variabel.
 
 ```{r, echo=FALSE}
-#arbl <- ApiData()
+arbl <- ApiData(
+    10594,
+    Region = kom_vec,
+    Tid = tid_vec,
+    Kjonn = kjonn_vec)
 
-#df_arbl <- 
+df_arbl <- data.frame(
+    knr = arbl[[2]]$Region,
+    knavn = arbl[[1]]$region,
+    tid = arbl[[2]]$Tid,
+    kjonn = arbl[[1]]$kjønn,
+    # arbeidsløse i prosent
+    al = arbl[[1]]$value
+)
 ```
 
 ```{r}
