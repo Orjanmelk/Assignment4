@@ -61,8 +61,8 @@ df_arbl_p_alder <- df_arbl_p_alder %>%
 
 ```{r, echo=FALSE}
 #endrer også navn fra df_arbl_p_alder til arblos_aldersgrp
-#arblos_aldersgrp <- 
-#rm(df_arbl_p_alder)
+arblos_aldersgrp <- separate(data = df_arbl_p_alder, c('aar', 'mnd'), col = "tid", sep = "M")
+rm(df_arbl_p_alder)
 ```
 
 ### Fikse knavn
@@ -81,7 +81,7 @@ str_remove(
 
 
 ```{r, echo=FALSE}
-# Fern (-2019) etc
+# Fjern (-2019) etc
 #arblos_aldersgrp$knavn <- 
 ```
 
