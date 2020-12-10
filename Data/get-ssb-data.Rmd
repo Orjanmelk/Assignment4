@@ -9,7 +9,7 @@ output:
 #install.packages("PxWebApiData")
 library(PxWebApiData)
 library(tidyverse)
-knitr::opts_chunk$set(eval = TRUE)
+knitr::opts_chunk$set(eval = FALSE)
 ```
 
 ## Assignment 4; ssb data
