@@ -98,12 +98,18 @@ head(unique(arblos_aldersgrp$knavn), n = 10)
 arblos_aldersgrp er ikke tidy. Hver observasjon er spredd over tre rekke, hhv. 15_29, 30_74 og 15_74. Pivot dataframen `arblos_aldersgrp` slik at vi får en observasjon per rekke. Bruk opsjonen `names_prefix` og sett denne lik "alp_" slik at de tre nye variabelnavnene starter med dette. Bruk samtidig mutate til å endre variablene `aar`og `mnd` til integer.
 
 ```{r}
-arblos_aldersgrp <- arblos_aldersgrp %>%
+arblos_aldersgrp2 <- arblos_aldersgrp %>%
   pivot_wider(
     names_from = alder,
     values_from = alp,
     names_prefix = c("alp_", "alp_", "alp_")
   )
+
+
+arblos_aldersgrp2 <- arblos_aldersgrp2 %>%
+  mutate(aar = as.integer(aar),
+         mnd = as.integer(mnd))
+
 ```
 
 Slik skal `arblos_aldersgrp` nå se ut.
