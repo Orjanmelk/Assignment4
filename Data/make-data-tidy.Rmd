@@ -82,7 +82,9 @@ str_remove(
 
 ```{r, echo=FALSE}
 # Fjern (-2019) etc
-#arblos_aldersgrp$knavn <- 
+arblos_aldersgrp$knavn <- str_remove(arblos_aldersgrp$knavn, pattern = fixed(" (-2019)"))
+arblos_aldersgrp$knavn <- str_remove(arblos_aldersgrp$knavn, pattern = fixed(" (1992-2019)"))
+arblos_aldersgrp$knavn <- str_remove(arblos_aldersgrp$knavn, pattern = fixed(" (1994-2019)"))
 ```
 
 Slik skal de 10 første navnene nå se ut:
