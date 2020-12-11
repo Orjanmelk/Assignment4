@@ -180,7 +180,9 @@ bef_f
 Lag til slutt tibble-en wf_f_bef som innholde arbeidsstyrke (wf-f) og befolkning (bef-f) på fylkesnivå for hvert år.
 
 ```{r, echo=FALSE}
-#wf_f_bef <- wf_f %>% 
+wf_f_bef <- wf_f %>% 
+    right_join(bef_f) %>%
+  arrange(fylke)
 ```
 
 Da skal wf_f_bef se slik ut:
