@@ -172,7 +172,7 @@ Bruk c() og str_pad() til å lage en `alder_klasse_vec` på formen "000", "001",
 ```{r, echo=FALSE}
 
 
-alder_klasse_vec <- c(str_pad(1:104, width = 3, pad = "0"), "105+")
+alder_klasse_vec <- c(str_pad(0:104, width = 3, pad = "0"), "105+")
 ```
 
 ```{r}
