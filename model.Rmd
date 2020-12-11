@@ -304,7 +304,10 @@ Vi har nå en tibble med data for hver kommune inne i tibble-en arblos_by_knr.
 Skriv en funksjon som kjører den lineære modellen wf_KM ~ alp_15_29 + alp_30_74 på en input dataframe a_df. Kall funksjonen mod1 (i magel på noe bedre navn).
 
 ```{r}
-mod1 <- 
+
+mod1 <- function(a_df) {
+  lm(wf_KM ~ alp_15_29 + alp_30_74)
+}
 ```
 KJøre så modellen vha. funksjonen mod1 på data i arblos_by_knr, og lag en list-column i arblos_by_knr som inneholder modellen. Kjør også tidy og glance fra broom på modellene for å få hhv. koeffisienter og ulike summary av modellen. Lagre resultatene i hhv. mod1_arblos, mod1_arblos_coef og mod1_arblos_sum (i siste er sum forkortelse for summary)
 
