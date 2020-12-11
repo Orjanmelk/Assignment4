@@ -182,7 +182,7 @@ Lag til slutt tibble-en wf_f_bef som innholde arbeidsstyrke (wf-f) og befolkning
 ```{r, echo=FALSE}
 wf_f_bef <- wf_f %>% 
     right_join(bef_f) %>%
-  arrange(fylke)
+  arrange(fylke, aar, mnd)
 ```
 
 Da skal wf_f_bef se slik ut:
