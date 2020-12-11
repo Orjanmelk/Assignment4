@@ -120,8 +120,13 @@ Vi vil nå se på arbeidsstyrke relativt til befolkning på landsbasis, dvs. wf_
 Plot dataen vha. geom_line() for de tre kategoriene. Bruk år som x-variabel.
 
 ```{r, echo=FALSE}
-#wf %>% 
-#    ggplot() +
+wf %>% 
+    ggplot(wf, mapping = aes(x = år)) +
+  geom_line(mapping = aes(y = wf_K/bef_K, color = "red")) +
+  geom_line(mapping = aes(y = wf_M/bef_M, color = "blue")) +
+  geom_line(mapping = aes(y = wf_KM/bef_KM)) +
+  ggtitle("Arbeidsstyrke relativt til befolkningen. Menn blå, kvinner rød og totalt svart.") +
+  theme(legend.position = "none")
 ```
 
 Hvordan kan pukkelen rett før 2010 forklares?
@@ -130,7 +135,7 @@ Hvordan kan pukkelen rett før 2010 forklares?
 names(arblos)
 ```
 
-Vi vil nå generere dat for arbeidsstyrken på fylkesbasis. Husk at de to første sifferene i knr angir fylket en kommune ligger i. Bruk dataene i arblos til å finne arbeidsstyrken på fylkesbasis (wf_f). Start med å bruke mutate() til å lage en ny variabel fylke. Grupper så og finn wf_K_f, wf_M_f og wf_KM_f vha. summarise(). Lag til slutt en ny variabel år som en date. Velg til slutt de relevante variabelen vha. select().
+Vi vil nå generere data for arbeidsstyrken på fylkesbasis. Husk at de to første sifferene i knr angir fylket en kommune ligger i. Bruk dataene i arblos til å finne arbeidsstyrken på fylkesbasis (wf_f). Start med å bruke mutate() til å lage en ny variabel fylke. Grupper så og finn wf_K_f, wf_M_f og wf_KM_f vha. summarise(). Lag til slutt en ny variabel år som en date. Velg til slutt de relevante variabelen vha. select().
 
 ```{r}
 # årlige data per fylke
