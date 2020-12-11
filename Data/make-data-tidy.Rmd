@@ -226,7 +226,8 @@ Tenk nøye gjennom hvilke variabler man skal «joine» på.
 
 ```{r, echo=FALSE}
 # arbeidsløse 1999 til 2014 månedlige data
-al9914m <- 
+al9914m <- df_arbl %>%
+  right_join(df_arbl_p_kjonn$alp_Menn, by = "knr")
 ```
 
 ```{r}
