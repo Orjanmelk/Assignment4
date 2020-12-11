@@ -160,7 +160,17 @@ print(wf_f, n = 5)
 Lag også en ny tibble bef_f fra bef som inneholder befolkningen i hvert fylke hvert år.
 
 ```{r, echo=FALSE}
-# bef_f <- bef %>% 
+bef_f <- bef %>% 
+  mutate(
+        fylke = substr(knr, start = 1, stop = 2)
+    ) %>% 
+    group_by(aar, fylke) %>% 
+    summarise(
+        bef_K_f = sum(bef_K, na.rm = TRUE),
+        bef_M_f = sum(bef_M, na.rm = TRUE),
+        bef_KM_f = bef_K_f + bef_M_f
+    ) %>% 
+    select(aar, fylke, bef_K_f, bef_M_f, bef_KM_f)
 
 ```
 ```{r}
