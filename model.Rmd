@@ -131,7 +131,7 @@ wf %>%
 
 Hvordan kan pukkelen rett før 2010 forklares?
 
-Denne pukkelen kan forklares ut fra at i 2008 var en finanskrise, men i 2010 var verdensøkonomien på vei oppover igjen. 
+Denne pukkelen kan forklares ut fra at i 2008 var en finanskrise som påvirket næringen og arbeidsmarkedet, mens i 2010 var verdensøkonomien og arbeidsmarkedet på vei til å stabilisere seg slik som tidligere før finanskrisen. 
 
 ```{r}
 names(arblos)
