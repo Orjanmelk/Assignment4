@@ -81,10 +81,16 @@ str_remove(
 
 
 ```{r, echo=FALSE}
+# Bruk heller regexp, virker på alle, ikke bare de 10 i eksemplet
+my_pat <- "\\s*\\([-\\d]+\\)\\s*"
+arblos_aldersgrp$knavn <- str_remove(
+  string = arblos_aldersgrp$knavn,
+  pattern = my_pat
+)
 # Fjern (-2019) etc
-arblos_aldersgrp$knavn <- str_remove(arblos_aldersgrp$knavn, pattern = fixed(" (-2019)"))
-arblos_aldersgrp$knavn <- str_remove(arblos_aldersgrp$knavn, pattern = fixed(" (1992-2019)"))
-arblos_aldersgrp$knavn <- str_remove(arblos_aldersgrp$knavn, pattern = fixed(" (1994-2019)"))
+# arblos_aldersgrp$knavn <- str_remove(arblos_aldersgrp$knavn, pattern = fixed(" (-2019)"))
+# arblos_aldersgrp$knavn <- str_remove(arblos_aldersgrp$knavn, pattern = fixed(" (1992-2019)"))
+# arblos_aldersgrp$knavn <- str_remove(arblos_aldersgrp$knavn, pattern = fixed(" (1994-2019)"))
 ```
 
 Slik skal de 10 første navnene nå se ut:
@@ -138,12 +144,16 @@ Hva som må fikses i`df_arbl_p_kjonn`:
 ### Fikser knavn
 
 ```{r, echo=FALSE}
-# Fern (-2019) etc
+#Bruk heller regexp
+df_arbl_p_kjonn$knavn <- str_remove(
+  string = df_arbl_p_kjonn$knavn,
+  pattern = my_pat
+)
+# Fjern (-2019) etc
 #df_arbl_p_kjonn$knavn <- 
-
-df_arbl_p_kjonn$knavn <- str_remove(df_arbl_p_kjonn$knavn, pattern = fixed(" (-2019)"))
-df_arbl_p_kjonn$knavn <- str_remove(df_arbl_p_kjonn$knavn, pattern = fixed(" (1992-2019)"))
-df_arbl_p_kjonn$knavn <- str_remove(df_arbl_p_kjonn$knavn, pattern = fixed(" (1994-2019)"))
+# df_arbl_p_kjonn$knavn <- str_remove(df_arbl_p_kjonn$knavn, pattern = fixed(" (-2019)"))
+# df_arbl_p_kjonn$knavn <- str_remove(df_arbl_p_kjonn$knavn, pattern = fixed(" (1992-2019)"))
+# df_arbl_p_kjonn$knavn <- str_remove(df_arbl_p_kjonn$knavn, pattern = fixed(" (1994-2019)"))
 
 df_arbl_p_kjonn <- separate(data = df_arbl_p_kjonn, c('aar', 'mnd'), col = "tid", sep = "M")
 
@@ -183,10 +193,14 @@ Hva som må fikses i `df_arbl`:
 Gjør som ovenfor.
 
 ```{r, echo=FALSE}
+df_arbl$knavn <- str_remove(
+  string = df_arbl$knavn,
+  pattern = my_pat
+)
 # Fikse navn
-df_arbl$knavn <- str_remove(df_arbl$knavn, pattern = fixed(" (-2019)"))
-df_arbl$knavn <- str_remove(df_arbl$knavn, pattern = fixed(" (1992-2019)"))
-df_arbl$knavn <- str_remove(df_arbl$knavn, pattern = fixed(" (1994-2019)"))
+# df_arbl$knavn <- str_remove(df_arbl$knavn, pattern = fixed(" (-2019)"))
+# df_arbl$knavn <- str_remove(df_arbl$knavn, pattern = fixed(" (1992-2019)"))
+# df_arbl$knavn <- str_remove(df_arbl$knavn, pattern = fixed(" (1994-2019)"))
 
 df_arbl <- separate(data = df_arbl, c('aar', 'mnd'), col = "tid", sep = "M")
 
@@ -225,6 +239,10 @@ Før vi slår i sammen de tre tibble-ene vi har gjort «tidy» er det lurt å sj
 Tenk nøye gjennom hvilke variabler man skal «joine» på.
 
 ```{r}
+# check that we have the same knavn
+stopifnot(identical(df_arbl$knavn, df_arbl_p_kjonn$knavn))
+stopifnot(identical(df_arbl$knavn, arblos_aldersgrp$knavn))
+
 # arbeidsløse 1999 til 2014 månedlige data
 al9914m <- df_arbl %>% 
   right_join(df_arbl_p_kjonn) %>% 
@@ -293,15 +311,20 @@ names(bef9914MK)
 Fiks kommunenavnene.
 
 ```{r, echo=FALSE}
+#mye mindre arbeid og i tillegg riktig svar
 bef9914MK$knavn <- str_remove(
   string = bef9914MK$knavn,
-  pattern = fixed(" (-2019)"))
-bef9914MK$knavn <- str_remove(
-  string = bef9914MK$knavn,
-  pattern = fixed(" (1992-2019)"))
-bef9914MK$knavn <- str_remove(
-  string = bef9914MK$knavn,
-  pattern = fixed(" (1994-2019)"))
+  pattern = my_pat
+)
+# bef9914MK$knavn <- str_remove(
+#   string = bef9914MK$knavn,
+#   pattern = fixed(" (-2019)"))
+# bef9914MK$knavn <- str_remove(
+#   string = bef9914MK$knavn,
+#   pattern = fixed(" (1992-2019)"))
+# bef9914MK$knavn <- str_remove(
+#   string = bef9914MK$knavn,
+#   pattern = fixed(" (1994-2019)"))
 ```
 
 ### Skifte navn fra tid til aar

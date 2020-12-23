@@ -100,7 +100,7 @@ wfhjelp <- bef %>%
     summarise(
         bef_K = sum(bef_K, na.rm = TRUE),
         bef_M = sum(bef_M, na.rm = TRUE),
-        bef_KM = sum(bef_M, na.rm = TRUE)) 
+        bef_KM = sum(bef_KM, na.rm = TRUE)) 
 
 
  wf <- right_join(wf, wfhjelp, by = "aar")
@@ -122,9 +122,9 @@ Plot dataen vha. geom_line() for de tre kategoriene. Bruk år som x-variabel.
 ```{r, echo=FALSE}
 wf %>% 
     ggplot(wf, mapping = aes(x = år)) +
-  geom_line(mapping = aes(y = wf_K/bef_K, color = "red")) +
-  geom_line(mapping = aes(y = wf_M/bef_M, color = "blue")) +
-  geom_line(mapping = aes(y = wf_KM/bef_KM)) +
+  geom_line(mapping = aes(y = wf_K/bef_K), color = "red") +
+  geom_line(mapping = aes(y = wf_M/bef_M), color = "blue") +
+  geom_line(mapping = aes(y = wf_KM/bef_KM), color = "black") +
   ggtitle("Arbeidsstyrke relativt til befolkningen. Menn blå, kvinner rød og totalt svart.") +
   theme(legend.position = "none")
 ```
